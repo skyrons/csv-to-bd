@@ -1,6 +1,15 @@
-function App() {
+import { useEffect } from "react"
+
+export default function App() {
+  useEffect(() => {
+    fetch('/endure-data.csv')
+      .then((r) => r.text())
+      .then((text) => {
+        console.log(text);
+      });
+  }, []);
+  
   return (
-    <h1></h1>
+    <div></div>
   )
 }
-export default App
