@@ -52,7 +52,7 @@ export default function App() {
       </aside>
       <main>
         <div className="main-content">  
-          <label>ADD A CSV FILE</label>
+          <h2>ADD A CSV FILE</h2>
 
           <CSVReader onFileLoaded={(data) => handleReciveFIle(data)} />
 

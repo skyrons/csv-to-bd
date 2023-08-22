@@ -9,13 +9,13 @@ import { getDatabase} from "firebase/database";
 // Your web app's Firebase configuration
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
-  apiKey: "AIzaSyBokwbjQKu7B8kNmd_jsQ2J6KE61Jivibs",
-  authDomain: "csv-to-db-22c27.firebaseapp.com",
-  projectId: "csv-to-db-22c27",
-  storageBucket: "csv-to-db-22c27.appspot.com",
-  messagingSenderId: "304275845605",
-  appId: "1:304275845605:web:8e10cc538439685c953f0c",
-  measurementId: "G-1Q7Z98WL7X"
+  apiKey: import.meta.env.API_KEY,
+  authDomain: import.meta.env.AUTH_DOMAIN,
+  databaseURL: "https://csv-to-db-22c27-default-rtdb.firebaseio.com",  projectId: import.meta.env.PROJECT_ID,
+  storageBucket: import.meta.env.STORAGE_BUCKET,
+  messagingSenderId: import.meta.env.MESSAGING_SENDER_ID,
+  appId: import.meta.env.APP_ID,
+  measurementId: import.meta.env.MEASUREMENT_ID
 };
 
 // Initialize Firebase
