@@ -3,6 +3,8 @@ import { database } from "./services/firebase";
 import { push, ref, set } from "firebase/database";
 import CSVReader from 'react-csv-reader'
 
+import './app.css'
+import icon from './assets/file-csv.svg'
 
 export default function App() {
 
@@ -44,10 +46,23 @@ export default function App() {
   }
 
   return (
-    <div className="App">
-      <label >Add CSV file</label>
-      <CSVReader onFileLoaded={(data) => handleReciveFIle(data)} />
-      <button onClick={ () => pasrseCSV(file) }>Send</button>
+    <div className="page">
+      <aside>
+        <img src="" alt="" />
+      </aside>
+      <main>
+        <div className="main-content">  
+          <label>ADD A CSV FILE</label>
+
+          <CSVReader onFileLoaded={(data) => handleReciveFIle(data)} />
+
+          <button className='button' onClick={ () => pasrseCSV(file) }>
+            <img src={icon} alt="" />
+            Send
+          </button>
+        </div>
+        
+      </main>
     </div>
   )
 }
