@@ -2,13 +2,17 @@ import { useState } from "react"
 import { database } from "./services/firebase";
 import { push, ref, set } from "firebase/database";
 import CSVReader from 'react-csv-reader'
+// import { splitEasy } from "csv-split-easy";
 
 import './app.css'
 import icon from './assets/file-csv.svg'
 
 export default function App() {
 
+
   const pasrseCSV = (text) => {
+
+    text.toString();
     const result = {
       header: [],
       data: [],
@@ -18,12 +22,16 @@ export default function App() {
    
   
     result.header = header;
-    
-    content.forEach((item: string) => {
-      result.data.push(item);
-    });
-  
-  
+
+    result.data = content;
+
+    for (let i = 0; i < result.data.length; i++){
+      for (let j = 0; j <=13; j++) {
+        if (result.data[i][j] == '') {
+          result.data[i][j] = null;
+        }
+      }
+    }
     console.log(result);
   
     const csvRef = ref(database, 'items');
