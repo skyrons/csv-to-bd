@@ -29,36 +29,36 @@ export default function App() {
         material1: {
           header: String,
           data: {
-            materialType: String,
-            percentage: Number
+            materialType: [],
+            percentage: []
           }
         },
         material2: {
           header: String,
           data: {
-            materialType: String,
-            percentage: Number
+            materialType: [],
+            percentage: []
           }
         },
         material3: {
           header: String,
           data: {
-            materialType: String,
-            percentage: Number
+            materialType: [],
+            percentage: []
           }
         },
         material4: {
           header: String,
           data: {
-            materialType: String,
-            percentage: Number
+            materialType: [],
+            percentage: []
           }
         },
         material5: {
           header: String,
           data: {
-            materialType: String,
-            percentage: Number
+            materialType: [],
+            percentage: []
           }
         }
       }
@@ -94,26 +94,41 @@ export default function App() {
         ]
       }
     }
-   
-
-    // for (let i = 0; i < result.data.length; i++){
-    //   for (let j = 0; j <=13; j++) {
-    //     if (result.data[i][j] == '') {
-    //       result.data[i][j] = null;
-    //     }
-    //   }
-    // }
-    console.log(result.product[1]);
+    console.log(result);
   
-    // const csvRef = ref(database, 'Product');
+    const csvRef = ref(database, 'Product');
     
-    // const firebaseCsv = push(csvRef);
-    // set(firebaseCsv, {
-    //   Product: {
-    //     CommodityCode: result.product.commodityCode
-        
-    //   }
-    // })
+    const firebaseCsv = push(csvRef);
+    set(firebaseCsv, {
+      Product: {
+        CommodityCode: result.product.commodityCode,
+        CountryOfManufacture: result.product.countryOfManufacture,
+        Construction: result.product.construction,
+        Materials: {
+          Material_1: {
+          Header: result.product.material1.header,
+          Material: result.product.material1.data
+          },
+          Material_2: {
+          Header: result.product.material2.header,
+          Material: result.product.material2.data
+          },
+          Material_3: {
+          Header: result.product.material3.header,
+          Material: result.product.material3.data
+          },
+          Material_4: {
+          Header: result.product.material4.header,
+          Material: result.product.material4.data
+          },
+          Material_5: {
+          Header: result.product.material5.header,
+          Material: result.product.material5.data
+          }
+        } 
+          
+      }
+    })
   
     return result;
   
