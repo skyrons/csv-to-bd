@@ -2,7 +2,6 @@ import { useState } from "react"
 import { database } from "./services/firebase";
 import { push, ref, set } from "firebase/database";
 import CSVReader from 'react-csv-reader'
-// import { splitEasy } from "csv-split-easy";
 
 import './app.css'
 import icon from './assets/file-csv.svg'
@@ -47,7 +46,7 @@ export default function App() {
             percentage: []
           }
         },
-        material4: {
+        material4: {  
           header: String,
           data: {
             materialType: [],
