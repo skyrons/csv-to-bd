@@ -1,6 +1,6 @@
 import { useState } from "react"
 import { database } from "./services/firebase";
-import { push, ref, set } from "firebase/database";
+import { onValue, push, ref, set } from "firebase/database";
 import CSVReader from 'react-csv-reader'
 
 import './app.css'
@@ -128,10 +128,17 @@ export default function App() {
           
       }
     })
-  
+    
+    const showProductsRef = ref (database, 'Product');
+    onValue(showProductsRef, product => {
+      const dataProduct = product.val();
+      console.log(dataProduct);
+    })
+    
     return result;
   
   };
+
 
   const [ file, setFile ] = useState ([])
 
