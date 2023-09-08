@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { database } from "./services/firebase";
 import { onValue, push, ref, set } from "firebase/database";
 import CSVReader from 'react-csv-reader'
@@ -6,6 +6,16 @@ import CSVReader from 'react-csv-reader'
 import './app.css'
 import icon from './assets/file-csv.svg'
 
+type FirebaseProduct = Record<string, {
+  commodityCode: string,
+  countryOfManufacture: string,
+  construction: string,
+  material: Record<string, {
+    materialType: string,
+    percentage: string
+  }>
+  
+}>
 
 export default function App() {
 
@@ -129,12 +139,6 @@ export default function App() {
       }
     })
     
-    const showProductsRef = ref (database, 'Product');
-    onValue(showProductsRef, product => {
-      const dataProduct = product.val();
-      console.log(dataProduct);
-    })
-    
     return result;
   
   };
@@ -146,6 +150,40 @@ export default function App() {
   function handleReciveFIle (data){
     setFile(data);
   }
+
+    
+  useEffect(() => {
+    
+    const showProductsRef = ref (database, 'Product/-Nd7DCDB0nKTC90eVv5e/Product');
+    onValue(showProductsRef, product => {
+      const databaseProduct = product.val();
+      const firebaseProduct: FirebaseProduct = databaseProduct;
+      const parsedProduct = Object.entries(firebaseProduct)
+
+      const parsedCode = databaseProduct.CommodityCode.data;
+      const parsedCountry = databaseProduct.CountryOfManufacture.data;
+      const parsedConstruction = databaseProduct.Construction.data;
+
+      const dataItem: FirebaseProduct = [{}];
+      for(let i = 0; i < parsedProduct.length; i++) {
+        for(let j = 0; j < parsedCode.length; j++) {
+          dataItem[j] = {
+            commodityCode: parsedCode[j],
+            countryOfManufacture: parsedCountry[j],
+            construction: parsedConstruction[j]
+          }
+        }
+       
+      }
+      
+
+      console.log(parsedProduct);
+      console.log(parsedCode[1],parsedCountry[1], parsedConstruction[1]);
+      console.log(dataItem[1]);
+    })
+  },[])
+  
+  
 
   return (
     <div className="page">
