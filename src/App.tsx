@@ -190,55 +190,53 @@ export default function App() {
       const dataItem: FirebaseProduct = [{}];
       for(let i = 0; i < parsedProduct.length; i++) {
         for(let j = 0; j < parsedCode.length; j++) {
-          for(let k = 0; k < 1; k++) {
-            dataItem[j] = {
-              commodityCode: parsedCode[j],
-              countryOfManufacture: parsedCountry[j],
-              construction: parsedConstruction[j],
-              materials: {
-                material_1: {
-                  materialType: parsedMaterial1type[j],
-                  percentage: parsedMaterial1Percentage[j]
-                },
-                material_2: {
-                  materialType: parsedMaterial2type[j],
-                  percentage: parsedMaterial2Percentage[j]
-                },
-                material_3: {
-                  materialType: parsedMaterial3type[j],
-                  percentage: parsedMaterial3Percentage[j]
-                },
-                material_4: {
-                  materialType: parsedMaterial4type[j],
-                  percentage: parsedMaterial4Percentage[j]
-                },
-                material_5: {
-                  materialType: parsedMaterial5type[j],
-                  percentage: parsedMaterial5Percentage[j]
-                },
-                material_6: {
-                  materialType: parsedMaterial6type[j],
-                  percentage: parsedMaterial6Percentage[j]
-                },
-                material_7: {
-                  materialType: parsedMaterial7type[j],
-                  percentage: parsedMaterial7Percentage[j]
-                },
-                material_8: {
-                  materialType: parsedMaterial8type[j],
-                  percentage: parsedMaterial8Percentage[j]
-                },
-                material_9: {
-                  materialType: parsedMaterial9type[j],
-                  percentage: parsedMaterial9Percentage[j]
-                },
-                material_10: {
-                  materialType: parsedMaterial10type[j],
-                  percentage: parsedMaterial10Percentage[j]
-                },
-              }
+          dataItem[j] = {
+            commodityCode: parsedCode[j],
+            countryOfManufacture: parsedCountry[j],
+            construction: parsedConstruction[j],
+            materials: {
+              material_1: {
+                materialType: parsedMaterial1type[j],
+                percentage: parsedMaterial1Percentage[j]
+              },
+              material_2: {
+                materialType: parsedMaterial2type[j],
+                percentage: parsedMaterial2Percentage[j]
+              },
+              material_3: {
+                materialType: parsedMaterial3type[j],
+                percentage: parsedMaterial3Percentage[j]
+              },
+              material_4: {
+                materialType: parsedMaterial4type[j],
+                percentage: parsedMaterial4Percentage[j]
+              },
+              material_5: {
+                materialType: parsedMaterial5type[j],
+                percentage: parsedMaterial5Percentage[j]
+              },
+              material_6: {
+                materialType: parsedMaterial6type[j],
+                percentage: parsedMaterial6Percentage[j]
+              },
+              material_7: {
+                materialType: parsedMaterial7type[j],
+                percentage: parsedMaterial7Percentage[j]
+              },
+              material_8: {
+                materialType: parsedMaterial8type[j],
+                percentage: parsedMaterial8Percentage[j]
+              },
+              material_9: {
+                materialType: parsedMaterial9type[j],
+                percentage: parsedMaterial9Percentage[j]
+              },
+              material_10: {
+                materialType: parsedMaterial10type[j],
+                percentage: parsedMaterial10Percentage[j]
+              },
             }
-          }
+            }
           
         }
        
