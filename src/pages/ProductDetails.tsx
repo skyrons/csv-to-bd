@@ -3,34 +3,38 @@ import { useEffect, useState } from "react"
 import { database } from "../services/firebase";
 import { onValue, ref } from "firebase/database";
 
+import { Products } from "../components/Products";
+
+
+
 type FirebaseProduct = Record<string, {
     commodityCode: string,
     countryOfManufacture: string,
     construction: string,
-    materials: {
+    materials: [
       material: {
         materialType: string,
         percentage: string
       }
-    }
+    ]
 }>
 
-type Product = {
+type ProductType = {
     id: string,
     commodityCode: string,
     countryOfManufacture: string,
     construction: string,
-    materials: {
+    materials: [
       material: {
         materialType: string,
         percentage: string
       }
-    }
+    ]
 }
 
 
 export default function ProductDetail() {
-    const[product, setProduct] = useState<Product[]>([]);
+    const[product, setProduct] = useState<ProductType[]>([]);
     
         
     useEffect(() => {
@@ -74,46 +78,46 @@ export default function ProductDetail() {
                     countryOfManufacture: parsedCountry[j],
                     construction: parsedConstruction[j],
                     materials: {
-                    material_1: {
-                        materialType: parsedMaterial1type[j],
-                        percentage: parsedMaterial1Percentage[j]
-                    },
-                    material_2: {
-                        materialType: parsedMaterial2type[j],
-                        percentage: parsedMaterial2Percentage[j]
-                    },
-                    material_3: {
-                        materialType: parsedMaterial3type[j],
-                        percentage: parsedMaterial3Percentage[j]
-                    },
-                    material_4: {
-                        materialType: parsedMaterial4type[j],
-                        percentage: parsedMaterial4Percentage[j]
-                    },
-                    material_5: {
-                        materialType: parsedMaterial5type[j],
-                        percentage: parsedMaterial5Percentage[j]
-                    },
-                    material_6: {
-                        materialType: parsedMaterial6type[j],
-                        percentage: parsedMaterial6Percentage[j]
-                    },
-                    material_7: {
-                        materialType: parsedMaterial7type[j],
-                        percentage: parsedMaterial7Percentage[j]
-                    },
-                    material_8: {
-                        materialType: parsedMaterial8type[j],
-                        percentage: parsedMaterial8Percentage[j]
-                    },
-                    material_9: {
-                        materialType: parsedMaterial9type[j],
-                        percentage: parsedMaterial9Percentage[j]
-                    },
-                    material_10: {
-                        materialType: parsedMaterial10type[j],
-                        percentage: parsedMaterial10Percentage[j]
-                    },
+                        material_1: {
+                            materialType: parsedMaterial1type[j],
+                            percentage: parsedMaterial1Percentage[j]
+                        },
+                        material_2: {
+                            materialType: parsedMaterial2type[j],
+                            percentage: parsedMaterial2Percentage[j]
+                        },
+                        material_3: {
+                            materialType: parsedMaterial3type[j],
+                            percentage: parsedMaterial3Percentage[j]
+                        },
+                        material_4: {
+                            materialType: parsedMaterial4type[j],
+                            percentage: parsedMaterial4Percentage[j]
+                        },
+                        material_5: {
+                            materialType: parsedMaterial5type[j],
+                            percentage: parsedMaterial5Percentage[j]
+                        },
+                        material_6: {
+                            materialType: parsedMaterial6type[j],
+                            percentage: parsedMaterial6Percentage[j]
+                        },
+                        material_7: {
+                            materialType: parsedMaterial7type[j],
+                            percentage: parsedMaterial7Percentage[j]
+                        },
+                        material_8: {
+                            materialType: parsedMaterial8type[j],
+                            percentage: parsedMaterial8Percentage[j]
+                        },
+                        material_9: {
+                            materialType: parsedMaterial9type[j],
+                            percentage: parsedMaterial9Percentage[j]
+                        },
+                        material_10: {
+                            materialType: parsedMaterial10type[j],
+                            percentage: parsedMaterial10Percentage[j]
+                        },
                     }
                     }
                 
@@ -127,14 +131,12 @@ export default function ProductDetail() {
                     commodityCode: value.commodityCode,
                     construction: value.construction,
                     countryOfManufacture: value.countryOfManufacture,
-                    materials: Object.values(value.materials ?? {})
+                    materials: Object.entries(value.materials ?? {})
                 }
             });
         
 
-        console.log(parsedProduct1[0]);
         setProduct(parsedProduct1[0]);
-        console.log(product);
 
       
     })
@@ -142,11 +144,26 @@ export default function ProductDetail() {
   
     return(
         <div>
-            <button>Voltar</button>
+            <button>Back</button>
             <br />
             <input type="text" />
+            {/* {JSON.stringify(product)} */}
 
-            {JSON.stringify(product)}
+
+            <div className="product-list">
+
+              
+                <Products 
+                    key={product.id}
+                    commodityCode={product.commodityCode}
+                    countryOfManufacture={product.countryOfManufacture}
+                    construction={product.construction}
+                    materials={product.materials} 
+                                                                
+                />
+                
+                {console.log(product)}
+            </div>         
         </div>
     )
 }
