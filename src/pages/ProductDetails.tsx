@@ -7,7 +7,7 @@ import { Products } from "../components/Products";
 
 
 
-type FirebaseProduct = Record<string, {
+type FirebaseProduct = {
     commodityCode: string,
     countryOfManufacture: string,
     construction: string,
@@ -17,7 +17,7 @@ type FirebaseProduct = Record<string, {
         percentage: string
       }
     ]
-}>
+}
 
 type ProductType = {
     id: string,
@@ -70,7 +70,7 @@ export default function ProductDetail() {
             const parsedMaterial10type = databaseProduct.Materials.Material_10.Material.materialType;
             const parsedMaterial10Percentage = databaseProduct.Materials.Material_10.Material.percentage;
 
-            const dataItem: FirebaseProduct = [{}];
+            const dataItem: FirebaseProduct = [];
             for(let i = 0; i < parsedProduct.length; i++) {
                 for(let j = 0; j < parsedCode.length; j++) {
                 dataItem[j] = {
@@ -119,11 +119,11 @@ export default function ProductDetail() {
                             percentage: parsedMaterial10Percentage[j]
                         },
                     }
-                    }
-                
                 }
-            
+                
             }
+            
+        }
             
             const parsedProduct1 = Object.entries(dataItem).map( ([key, value]) => {
                 return {
@@ -135,10 +135,7 @@ export default function ProductDetail() {
                 }
             });
         
-
-        setProduct(parsedProduct1[0]);
-
-      
+        setProduct(parsedProduct1[20]);
     })
   },[])
   
@@ -147,12 +144,9 @@ export default function ProductDetail() {
             <button>Back</button>
             <br />
             <input type="text" />
-            {/* {JSON.stringify(product)} */}
-
 
             <div className="product-list">
 
-              
                 <Products 
                     key={product.id}
                     commodityCode={product.commodityCode}
@@ -162,7 +156,7 @@ export default function ProductDetail() {
                                                                 
                 />
                 
-                {console.log(product)}
+                
             </div>         
         </div>
     )
