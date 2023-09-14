@@ -1,129 +1,52 @@
-import './product.css'
+import style from './product.module.css'
 
 export type Material = [
     material: {
-      materialType: string,
-      percentage: string
+        materialType: string,
+        percentage: string
     }
+  
 ]
 
 type ProductProps = {
-    key: string,
-    commodityCode: string,
-    countryOfManufacture: string,
-    construction: string,
-    materials: Material
+  key: string,
+  commodityCode: string,
+  countryOfManufacture: string,
+  construction: string,
+  materials: Material[]
 }
 
 export function Products({
-    commodityCode,
-    countryOfManufacture,
-    construction,
-    materials
+  commodityCode,
+  countryOfManufacture,
+  construction,
+  materials
 }: ProductProps) {
-    // console.log(materials)
-
-    // const findMaterial = []
-    // for(let i = 0; i < materials.length; i++) {
-    //     percentage[i] = materials[i][1].percentage
-    // }
-
-    // console.log(percentage)
-
-    return(
-        <div className="product">
+    
+  return (
+    <div className={style.wrapper}>
+        <div className={style.infoBox}>
             <p>Commodity Code: {commodityCode}</p>
-            <p>{countryOfManufacture}</p>
+            <p>Country of Manufacture: {countryOfManufacture}</p>
             <p>Construction: {construction}</p>
-            <table>
-                <th>
-                    <td>Material</td>
-                    <td>Percentage(%)</td>
-                </th>
+            <table className={style.table}>
+                <thead>
+                <tr>
+                    <th>Material</th>
+                    <th>(%)</th>
+                </tr>
+                </thead>
                 <tbody>
-                    
-                    {materials[0].map( (material, index) =>{
-                        return(
-                            <div key={index}>
-                                <td> {material.materialType} </td>
-                                <td> {material.percentage}</td>
-                            </div>
-                        )
-                    })}
-                    {materials[1].map( (material, index) =>{
-                        return(
-                            <div key={index}>
-                                <td> {material.materialType} </td>
-                                <td> {material.percentage}</td>
-                            </div>
-                        )
-                    })}
-                    {materials[2].map( (material, index) =>{
-                        return(
-                            <div key={index}>
-                                <td> {material.materialType} </td>
-                                <td> {material.percentage}</td>
-                            </div>
-                        )
-                    })}
-                    {materials[3].map( (material, index) =>{
-                        return(
-                            <div key={index}>
-                                <td> {material.materialType} </td>
-                                <td> {material.percentage}</td>
-                            </div>
-                        )
-                    })}
-                    {materials[4].map( (material, index) =>{
-                        return(
-                            <div key={index}>
-                                <td> {material.materialType} </td>
-                                <td> {material.percentage}</td>
-                            </div>
-                        )
-                    })}
-                    {materials[5].map( (material, index) =>{
-                        return(
-                            <div key={index}>
-                                <td> {material.materialType} </td>
-                                <td> {material.percentage}</td>
-                            </div>
-                        )
-                    })}
-                    {materials[6].map( (material, index) =>{
-                        return(
-                            <div key={index}>
-                                <td> {material.materialType} </td>
-                                <td> {material.percentage}</td>
-                            </div>
-                        )
-                    })}
-                    {materials[7].map( (material, index) =>{
-                        return(
-                            <div key={index}>
-                                <td> {material.materialType} </td>
-                                <td> {material.percentage}</td>
-                            </div>
-                        )
-                    })}
-                    {materials[8].map( (material, index) =>{
-                        return(
-                            <div key={index}>
-                                <td> {material.materialType} </td>
-                                <td> {material.percentage}</td>
-                            </div>
-                        )
-                    })}
-                    {materials[9].map( (material, index) =>{
-                        return(
-                            <div key={index}>
-                                <td> {material.materialType} </td>
-                                <td> {material.percentage}</td>
-                            </div>
-                        )
-                    })}
+                {materials?.map((material, index) => (
+                    <tr key={index}>
+                    <td>{material?.map(value => value.materialType)}</td>
+                    <td>{material?.map(value => value.percentage)}</td>
+                    </tr>
+                ))}
                 </tbody>
             </table>
-        </div>
-    );
+    </div>
+    </div>
+    
+  );
 }

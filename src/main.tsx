@@ -7,6 +7,6 @@ import './services/firebase'
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
-    <ProductDetail />
+    <App />
   </React.StrictMode>,
 )

@@ -5,6 +5,8 @@ import { onValue, ref } from "firebase/database";
 
 import { Products } from "../components/Products";
 
+import style from './ProductDetails.module.css'
+
 
 
 type FirebaseProduct = {
@@ -34,12 +36,14 @@ type ProductType = {
 
 
 export default function ProductDetail() {
-    const[product, setProduct] = useState<ProductType[]>([]);
+    const[product, setProduct] = useState<ProductType>([]);
     
         
     useEffect(() => {
+
+        const tableCode = '-Nd7DCDB0nKTC90eVv5e'
         
-        const showProductsRef = ref (database, 'Product/-Nd7DCDB0nKTC90eVv5e/Product');
+        const showProductsRef = ref (database, `Product/${tableCode}/Product`);
         onValue(showProductsRef, product => {
             const databaseProduct = product.val();
             const firebaseProduct: FirebaseProduct = databaseProduct ?? {};
@@ -134,30 +138,42 @@ export default function ProductDetail() {
                     materials: Object.entries(value.materials ?? {})
                 }
             });
-        
-        setProduct(parsedProduct1[20]);
+        // 
+        setProduct(parsedProduct1[1]);
     })
   },[])
-  
+    
+
     return(
         <div>
-            <button>Back</button>
-            <br />
-            <input type="text" />
+            <header>
+                Product Details
+            </header>
 
-            <div className="product-list">
 
-                <Products 
-                    key={product.id}
-                    commodityCode={product.commodityCode}
-                    countryOfManufacture={product.countryOfManufacture}
-                    construction={product.construction}
-                    materials={product.materials} 
-                                                                
-                />
-                
-                
-            </div>         
+            <section>
+                <div className="wrapper">
+                    <div className={style.infobox}>
+                    <Products 
+                        key={product.id}
+                        commodityCode={product.commodityCode}
+                        countryOfManufacture={product.countryOfManufacture}
+                        construction={product.construction}
+                        materials={product.materials} 
+                                                                    
+                    />
+                    </div>
+                </div>
+            </section>
+
+
+
+                <div className="product-list">
+
+                    
+                    
+                    
+                </div>        
         </div>
     )
 }
