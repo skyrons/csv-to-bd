@@ -78,3 +78,28 @@ main .button img {
     opacity: 0.9;
     color: black;
 }
+
+
+.separator {
+    width: 90%; 
+    border: 1px solid #A8A8B3;
+    margin: 16px;
+}
+
+.buttonProduct{
+    height: 2rem;
+    border-radius: 8px;
+    font-weight: 700px;
+
+    background-color: #10df4e;
+    color: #292929;
+
+    border: none;
+    cursor: pointer;
+    transition: filter 0.2;
+}
+
+.buttonProduct:hover{
+    opacity: 10;
+    color: black;
+}

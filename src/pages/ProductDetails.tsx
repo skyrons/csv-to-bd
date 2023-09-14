@@ -1,11 +1,14 @@
-import { useEffect, useState } from "react"
+import { FormEvent, useEffect, useState } from "react"
+import { useNavigate } from "react-router-dom";
+
 
 import { database } from "../services/firebase";
-import { onValue, ref } from "firebase/database";
+import { get, onValue, ref } from "firebase/database";
 
 import { Products } from "../components/Products";
 
 import style from './ProductDetails.module.css'
+import homeIcon from '../assets/home-icon.png'
 
 
 
@@ -37,12 +40,24 @@ type ProductType = {
 
 export default function ProductDetail() {
     const[product, setProduct] = useState<ProductType>([]);
-    
-        
-    useEffect(() => {
+    const[tableCode, setTableCode] = useState('')
+    const[index, setIndex] = useState(Number())
 
-        const tableCode = '-Nd7DCDB0nKTC90eVv5e'
+    const history = useNavigate()
+
+    async function handleFindProduct(event: FormEvent ){
+        event.preventDefault();
+        if(tableCode.trim() === ''){
+            return;
+        }
+        const verifyRef = await get(ref(database, `Product/${tableCode}`))
         
+        if(!verifyRef.exists()){
+            alert('Table not found')
+            return;
+        }
+
+        console.log(tableCode)
         const showProductsRef = ref (database, `Product/${tableCode}/Product`);
         onValue(showProductsRef, product => {
             const databaseProduct = product.val();
@@ -129,50 +144,75 @@ export default function ProductDetail() {
             
         }
             
-            const parsedProduct1 = Object.entries(dataItem).map( ([key, value]) => {
-                return {
-                    id: key,
-                    commodityCode: value.commodityCode,
-                    construction: value.construction,
-                    countryOfManufacture: value.countryOfManufacture,
-                    materials: Object.entries(value.materials ?? {})
-                }
-            });
-        // 
+        const parsedProduct1 = Object.entries(dataItem).map( ([key, value]) => {
+            return {
+                id: key,
+                commodityCode: value.commodityCode,
+                construction: value.construction,
+                countryOfManufacture: value.countryOfManufacture,
+                 materials: Object.entries(value.materials ?? {})
+            }
+        });
+
+        setProduct(parsedProduct1[index]);
+        })
         
-        setProduct(parsedProduct1[0]);
-    })
-  },[])
+      }
     
+        useEffect(() => {
+       
+    },[tableCode, index]);
+    
+    function handleNavigateHome(){
+        history('/')
+    }
+
+  
 
     return(
         <div>
             <header>
-                Product Details
+                <menu className={style.menu}> 
+                    <button onClick={handleNavigateHome} >
+                        <img src={homeIcon} alt="" />
+                    </button>
+                </menu>
+                <div className={style.content}>
+                    Product Details
+                </div>
             </header>
 
 
             <section>
                 <div className={style.wrapper}>
                     <div className={style.infoBox}>
-                        <form>
+                        <form onSubmit={handleFindProduct}>
                             <div className={style.input}>
                                 <input 
                                     type="text" 
-                                    placeholder="Table Reference" 
+                                    placeholder="Table Reference"
+                                    onChange={event => setTableCode(event.target.value)}
+                                    value={tableCode}
                                 />
+                                <label>ID</label>
                                 <input 
                                     className={style.inputId}
                                     type="text" 
-                                    placeholder="ID" 
+                                    placeholder="ID"
+                                    onChange={event => setIndex(event.target.value)}
+                                    value={index}
                                 />
                             </div>
 
-                            <button className={style.buttonFind}>Find</button>
+                            <button 
+                                type="submit"
+                                className={style.buttonFind}
+                            >
+                                Find
+                            </button>
                             
                         </form>
-                        <div className={style.separator}>
-                        </div>
+                        <div className={style.separator}></div>
                         <Products 
                             key={product.id}
                             commodityCode={product.commodityCode}

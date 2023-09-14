@@ -172,9 +172,14 @@ export default function App() {
           />
             Send
           </button>
-          
-          <button  onClick={handleNavigatePage}>
-              join room
+
+          <div className='separator'></div>
+
+          <button  
+            onClick={handleNavigatePage}
+            className='buttonProduct'
+            >
+            Search
           </button>
         </div>
 

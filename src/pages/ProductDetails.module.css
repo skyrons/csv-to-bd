@@ -4,14 +4,29 @@
 }
 
 header {
+    padding: 20px;
     display: flex;
+    gap: 43%;
     align-items: center;
-    justify-content: center;
+    
 
     font-size: 2rem;
     height: 5rem;
 
     background-color: #7d3d8e;
+    color: #FDFDFD;
+
+}
+
+header button {
+    background-color: transparent;
+    border: none;
+
+    cursor: pointer;
+}
+
+header img {
+    width: 30px;
 }
 
 .wrapper {
@@ -51,11 +66,16 @@ header {
 }
 
 .input input {
+    height: 1.8rem;
+    width: 75%;
+
     padding: 0.2rem;
     border-radius: 6px;
     border: 0.5px solid rgba(0, 0, 0, 0.04);
 }
-
+label {
+    margin: auto;
+}
 .input .inputId{
     width: 3.125rem;
 }
