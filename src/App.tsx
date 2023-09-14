@@ -172,22 +172,7 @@ export default function App() {
           />
             Send
           </button>
-
-          <div className="separator">
-            Search for a product 
-          </div>
           
-          <form >
-            <input 
-              type="text" 
-              placeholder="Table ID reference"
-            />
-            <input 
-              type="text" 
-              placeholder="Product ID"
-            />
-
-          </form>
           <button  onClick={handleNavigatePage}>
               join room
           </button>

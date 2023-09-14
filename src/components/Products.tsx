@@ -5,7 +5,6 @@ export type Material = [
         materialType: string,
         percentage: string
     }
-  
 ]
 
 type ProductProps = {
@@ -24,8 +23,8 @@ export function Products({
 }: ProductProps) {
     
   return (
-    <div className={style.wrapper}>
-        <div className={style.infoBox}>
+    <div>
+        <div className={style.infoProduct}>
             <p>Commodity Code: {commodityCode}</p>
             <p>Country of Manufacture: {countryOfManufacture}</p>
             <p>Construction: {construction}</p>

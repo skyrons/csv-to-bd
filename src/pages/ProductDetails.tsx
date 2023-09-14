@@ -139,7 +139,8 @@ export default function ProductDetail() {
                 }
             });
         // 
-        setProduct(parsedProduct1[1]);
+        
+        setProduct(parsedProduct1[0]);
     })
   },[])
     
@@ -152,28 +153,41 @@ export default function ProductDetail() {
 
 
             <section>
-                <div className="wrapper">
-                    <div className={style.infobox}>
-                    <Products 
-                        key={product.id}
-                        commodityCode={product.commodityCode}
-                        countryOfManufacture={product.countryOfManufacture}
-                        construction={product.construction}
-                        materials={product.materials} 
-                                                                    
-                    />
+                <div className={style.wrapper}>
+                    <div className={style.infoBox}>
+                        <form>
+                            <div className={style.input}>
+                                <input 
+                                    type="text" 
+                                    placeholder="Table Reference" 
+                                />
+                                <input 
+                                    className={style.inputId}
+                                    type="text" 
+                                    placeholder="ID" 
+                                />
+                            </div>
+
+                            <button className={style.buttonFind}>Find</button>
+                            
+                        </form>
+                        <div className={style.separator}>
+                        </div>
+                        <Products 
+                            key={product.id}
+                            commodityCode={product.commodityCode}
+                            countryOfManufacture={product.countryOfManufacture}
+                            construction={product.construction}
+                            materials={product.materials}                                        
+                        >
+                            <input 
+                            type="text" 
+                            placeholder="type"
+                        />
+                        </Products>
                     </div>
                 </div>
             </section>
-
-
-
-                <div className="product-list">
-
-                    
-                    
-                    
-                </div>        
         </div>
     )
 }

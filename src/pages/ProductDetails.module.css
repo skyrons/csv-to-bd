@@ -13,3 +13,80 @@ header {
 
     background-color: #7d3d8e;
 }
+
+.wrapper {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+
+    background-color: #debae4;
+}
+
+.infoBox {
+    position: absolute;
+    left: 50%;
+    top: 40%;
+    transform: translate(-50%, -50%);
+
+    width: 25rem;
+    background-color: #FDFDFD9D;
+
+    border-radius: 8px;
+    box-shadow: 0px 2px 12px rgba(0, 0, 0, 0.04);
+    padding: 24px;
+
+    font-family: 'Roboto';
+    font-weight: 400;
+    font-size: 16px;
+
+    color: #29292E;
+}
+
+.input{
+    display: flex;
+    justify-content: flex-start;
+    gap: 0.5rem;
+    
+    border: transparent !important;
+}
+
+.input input {
+    padding: 0.2rem;
+    border-radius: 6px;
+    border: 0.5px solid rgba(0, 0, 0, 0.04);
+}
+
+.input .inputId{
+    width: 3.125rem;
+}
+
+.buttonFind{
+    height: 2rem;
+    margin-top: 1rem;
+
+    border-radius: 8px;
+    font-weight: 700;
+    background: #7d3d8e;
+    color: #F9F9F9;
+    padding: 0 15px;
+  
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+    cursor: pointer;
+    border: 0;
+    transition: filter 0.2;
+}
+
+.buttonFind:hover {
+    opacity: 0.9;
+    color: #FDFDFD;
+}
+
+.separator {
+    width: 90%; 
+    border: 1px solid #A8A8B3;
+    margin: 16px;
+}
+
