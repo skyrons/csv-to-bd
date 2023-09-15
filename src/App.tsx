@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 
 import { useState } from "react"
 import { useNavigate } from 'react-router-dom'
@@ -16,7 +17,7 @@ export default function App() {
   const [ file, setFile ] = useState ([]);
   const history = useNavigate();
 
-  const pasrseCSV = (text) => {
+  const pasrseCSV = (text: any) => {
     
     const result = {
       product: {
@@ -69,7 +70,7 @@ export default function App() {
         }
       }
       
-    }
+    } as any
   
     const [header, ...content]= text;
 
@@ -143,7 +144,7 @@ export default function App() {
 
   
 
-  function handleReciveFile (data){
+  function handleReciveFile (data: any){
     setFile(data);
   }
 
