@@ -57,6 +57,9 @@ export default function ProductDetail() {
             return;
         }
 
+        if(index.trim() === ''){
+            return;
+        }
         console.log(tableCode)
         const showProductsRef = ref (database, `Product/${tableCode}/Product`);
         onValue(showProductsRef, product => {
@@ -154,14 +157,19 @@ export default function ProductDetail() {
             }
         });
 
+
+        if(index > (parsedProduct1.length -1) || index < 0) {
+            alert('Id not found')
+            return;
+
+        }
+        
         setProduct(parsedProduct1[index]);
         })
         
       }
     
-        useEffect(() => {
-       
-    },[tableCode, index]);
+     
     
     function handleNavigateHome(){
         history('/')
