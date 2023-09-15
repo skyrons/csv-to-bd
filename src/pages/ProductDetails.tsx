@@ -1,4 +1,5 @@
-import { FormEvent, useEffect, useState } from "react"
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import { FormEvent, useState } from "react"
 import { useNavigate } from "react-router-dom";
 
 
@@ -39,7 +40,7 @@ type ProductType = {
 
 
 export default function ProductDetail() {
-    const[product, setProduct] = useState<ProductType>([]);
+    const[product, setProduct] = useState<ProductType > () ;
     const[tableCode, setTableCode] = useState('')
     const[index, setIndex] = useState(Number())
 
@@ -57,7 +58,7 @@ export default function ProductDetail() {
             return;
         }
 
-        if(index.trim() === ''){
+        if(index === null){
             return;
         }
         console.log(tableCode)
@@ -92,7 +93,7 @@ export default function ProductDetail() {
             const parsedMaterial10type = databaseProduct.Materials.Material_10.Material.materialType;
             const parsedMaterial10Percentage = databaseProduct.Materials.Material_10.Material.percentage;
 
-            const dataItem: FirebaseProduct = [];
+            const dataItem: FirebaseProduct | any= [];
             for(let i = 0; i < parsedProduct.length; i++) {
                 for(let j = 0; j < parsedCode.length; j++) {
                 dataItem[j] = {
@@ -148,13 +149,16 @@ export default function ProductDetail() {
         }
             
         const parsedProduct1 = Object.entries(dataItem).map( ([key, value]) => {
-            return {
-                id: key,
-                commodityCode: value.commodityCode,
-                construction: value.construction,
-                countryOfManufacture: value.countryOfManufacture,
-                 materials: Object.entries(value.materials ?? {})
+            if(typeof value === 'object' && value !== null) {
+                return {
+                    id: key,
+                    commodityCode: (value as {commodityCode: string}).commodityCode,
+                    construction:  (value as {construction: string}).construction,
+                    countryOfManufacture:(value as {countryOfManufacture: string}).countryOfManufacture,
+                    materials: Object.entries((value as {materials: string}).materials ?? {})
+                }
             }
+            return null;
         });
 
 
@@ -164,7 +168,7 @@ export default function ProductDetail() {
 
         }
         
-        setProduct(parsedProduct1[index]);
+        setProduct(parsedProduct1[index] as any);
         })
         
       }
@@ -207,7 +211,7 @@ export default function ProductDetail() {
                                     className={style.inputId}
                                     type="text" 
                                     placeholder="ID"
-                                    onChange={event => setIndex(event.target.value)}
+                                    onChange={event => setIndex(event.target.value as any)}
                                     value={index}
                                 />
                             </div>
@@ -222,17 +226,11 @@ export default function ProductDetail() {
                         </form>
                         <div className={style.separator}></div>
                         <Products 
-                            key={product.id}
-                            commodityCode={product.commodityCode}
-                            countryOfManufacture={product.countryOfManufacture}
-                            construction={product.construction}
-                            materials={product.materials}                                        
-                        >
-                            <input 
-                            type="text" 
-                            placeholder="type"
+                            commodityCode={product?.commodityCode}
+                            countryOfManufacture={product?.countryOfManufacture}
+                            construction={product?.construction}
+                            materials={product?.materials as any}                                        
                         />
-                        </Products>
                     </div>
                 </div>
             </section>

@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import style from './product.module.css'
 
 export type Material = [
@@ -8,11 +9,10 @@ export type Material = [
 ]
 
 type ProductProps = {
-  key: string,
-  commodityCode: string,
-  countryOfManufacture: string,
-  construction: string,
-  materials: Material[]
+  commodityCode: string | undefined,
+  countryOfManufacture: string | undefined,
+  construction: string | undefined,
+  materials: Material[] | undefined  
 }
 
 export function Products({
