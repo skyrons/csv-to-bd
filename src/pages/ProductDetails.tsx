@@ -61,7 +61,7 @@ export default function ProductDetail() {
         if(index === null){
             return;
         }
-        console.log(tableCode)
+        // console.log(tableCode)
         const showProductsRef = ref (database, `Product/${tableCode}/Product`);
         onValue(showProductsRef, product => {
             const databaseProduct = product.val();
@@ -82,16 +82,16 @@ export default function ProductDetail() {
             const parsedMaterial4Percentage = databaseProduct.Materials.Material_4.Material.percentage;
             const parsedMaterial5type = databaseProduct.Materials.Material_5.Material.materialType;
             const parsedMaterial5Percentage = databaseProduct.Materials.Material_5.Material.percentage;
-            const parsedMaterial6type = databaseProduct.Materials.Material_6.Material.materialType;
-            const parsedMaterial6Percentage = databaseProduct.Materials.Material_6.Material.percentage;
-            const parsedMaterial7type = databaseProduct.Materials.Material_7.Material.materialType;
-            const parsedMaterial7Percentage = databaseProduct.Materials.Material_7.Material.percentage;
-            const parsedMaterial8type = databaseProduct.Materials.Material_8.Material.materialType;
-            const parsedMaterial8Percentage = databaseProduct.Materials.Material_8.Material.percentage;
-            const parsedMaterial9type = databaseProduct.Materials.Material_9.Material.materialType;
-            const parsedMaterial9Percentage = databaseProduct.Materials.Material_9.Material.percentage;
-            const parsedMaterial10type = databaseProduct.Materials.Material_10.Material.materialType;
-            const parsedMaterial10Percentage = databaseProduct.Materials.Material_10.Material.percentage;
+            // const parsedMaterial6type = databaseProduct.Materials.Material_6.Material.materialType;
+            // const parsedMaterial6Percentage = databaseProduct.Materials.Material_6.Material.percentage;
+            // const parsedMaterial7type = databaseProduct.Materials.Material_7.Material.materialType;
+            // const parsedMaterial7Percentage = databaseProduct.Materials.Material_7.Material.percentage;
+            // const parsedMaterial8type = databaseProduct.Materials.Material_8.Material.materialType;
+            // const parsedMaterial8Percentage = databaseProduct.Materials.Material_8.Material.percentage;
+            // const parsedMaterial9type = databaseProduct.Materials.Material_9.Material.materialType;
+            // const parsedMaterial9Percentage = databaseProduct.Materials.Material_9.Material.percentage;
+            // const parsedMaterial10type = databaseProduct.Materials.Material_10.Material.materialType;
+            // const parsedMaterial10Percentage = databaseProduct.Materials.Material_10.Material.percentage;
 
             const dataItem: FirebaseProduct | any= [];
             for(let i = 0; i < parsedProduct.length; i++) {
@@ -121,26 +121,26 @@ export default function ProductDetail() {
                             materialType: parsedMaterial5type[j],
                             percentage: parsedMaterial5Percentage[j]
                         },
-                        material_6: {
-                            materialType: parsedMaterial6type[j],
-                            percentage: parsedMaterial6Percentage[j]
-                        },
-                        material_7: {
-                            materialType: parsedMaterial7type[j],
-                            percentage: parsedMaterial7Percentage[j]
-                        },
-                        material_8: {
-                            materialType: parsedMaterial8type[j],
-                            percentage: parsedMaterial8Percentage[j]
-                        },
-                        material_9: {
-                            materialType: parsedMaterial9type[j],
-                            percentage: parsedMaterial9Percentage[j]
-                        },
-                        material_10: {
-                            materialType: parsedMaterial10type[j],
-                            percentage: parsedMaterial10Percentage[j]
-                        },
+                        // material_6: {
+                        //     materialType: parsedMaterial6type[j],
+                        //     percentage: parsedMaterial6Percentage[j]
+                        // },
+                        // material_7: {
+                        //     materialType: parsedMaterial7type[j],
+                        //     percentage: parsedMaterial7Percentage[j]
+                        // },
+                        // material_8: {
+                        //     materialType: parsedMaterial8type[j],
+                        //     percentage: parsedMaterial8Percentage[j]
+                        // },
+                        // material_9: {
+                        //     materialType: parsedMaterial9type[j],
+                        //     percentage: parsedMaterial9Percentage[j]
+                        // },
+                        // material_10: {
+                        //     materialType: parsedMaterial10type[j],
+                        //     percentage: parsedMaterial10Percentage[j]
+                        // },
                     }
                 }
                 
